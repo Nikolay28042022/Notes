@@ -23,7 +23,19 @@ def add_date():
     '''
     now = datetime.now()
     timestamp = now.strftime("%Y-%m-%d %H:%M:%S")
-    generated_id = len(open('date.csv', 'r', newline='', encoding='UTF-8').readlines())
+
+        # Читаем файл, чтобы получить текущее количество записей
+    with open('date.csv', 'r', newline='', encoding='UTF-8') as file:
+        reader = csv.reader(file)
+        next(reader)  # Пропускаем заголовок
+        lines = list(reader)
+
+    # Получаем текущее количество записей в файле
+    generated_id = len(lines)  if len(lines) > 0 else 0
+
+    # Проверяем уникальность id
+    while any(int(line[0]) == generated_id for line in lines):
+        generated_id += 1
 
     date_list = [str(generated_id), input("Введите название записки: "), input("Введите тело записки: "), timestamp]
 

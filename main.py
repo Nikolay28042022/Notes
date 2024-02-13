@@ -1,3 +1,5 @@
 import controller
 
-controller.action
+if __name__ == "__main__":
+    controller
+    

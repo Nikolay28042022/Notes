@@ -5,7 +5,7 @@ if not func.check_file_existence():
     func.create_date()
 
 while True:
-    action = input('''
+    action_input = input('''
         Какое действие Вы хотите произвести?
         Введите соответствующую цифру.
         1 - Просмотр заметок
@@ -17,7 +17,7 @@ while True:
     ''')
 
     try:
-        action = int(action)
+        action = int(action_input)
     except ValueError:
         print("Введите корректное число.")
         continue
